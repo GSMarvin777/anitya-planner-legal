@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Approved | Anitya Planner Analytics</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.box{background:var(--panel);border-radius:14px;padding:20px;margin:20px 0;word-break:break-all;font-family:Consolas,monospace;font-size:14px}
+button{background:var(--green);color:#002c33;border:0;border-radius:999px;padding:12px 22px;font-weight:700;font-size:15px;cursor:pointer}
+.err{color:#fa813a}
+</style>
+</head>
+<body>
+<main>
+<h1 id="title">Almost done</h1>
+<p id="msg">Copy the address below and paste it back into the terminal window that is waiting for it.</p>
+<div class="box" id="url"></div>
+<button id="copy" type="button">Copy address</button>
+<p class="meta" id="note"></p>
+<p class="meta">This page only shows what TikTok sent back. It does not store or send anything.</p>
+</main>
+<script>
+  var full = location.href, q = new URLSearchParams(location.search);
+  document.getElementById("url").textContent = full;
+  if (q.get("error")) {
+    document.getElementById("title").textContent = "Not approved";
+    document.getElementById("msg").className = "err";
+    document.getElementById("msg").textContent = "TikTok returned an error: " + (q.get("error_description") || q.get("error")) + ". Close this tab and run the login helper again.";
+  } else if (!q.get("code")) {
+    document.getElementById("msg").textContent = "This page is used after approving the Anitya Planner Analytics app on TikTok. There is no approval code in this address.";
+  }
+  document.getElementById("copy").onclick = function () {
+    navigator.clipboard.writeText(full).then(function () {
+      document.getElementById("note").textContent = "Copied. Paste it into the terminal and press Enter.";
+    }, function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("url"));
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      document.getElementById("note").textContent = "Selected. Press Ctrl+C to copy it.";
+    });
+  };
+</script>
+</body>
+</html>
