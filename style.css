@@ -1,0 +1,10 @@
+:root{--bg:#002c33;--panel:#0b3940;--fg:#eef3f3;--muted:#a9bec1;--green:#52ece1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "Helvetica Neue",Arial,sans-serif}
+main{max-width:720px;margin:0 auto;padding:48px max(20px,env(safe-area-inset-left,0px)) 64px}
+h1{font-family:"Arial Black",Impact,sans-serif;text-transform:uppercase;font-size:34px;line-height:1.1;margin:0 0 8px}
+h2{font-size:19px;margin:32px 0 8px;color:var(--green)}
+p,li{color:var(--fg)}
+.meta{color:var(--muted);font-size:14px;margin:0 0 28px}
+a{color:var(--green)}
+nav{display:flex;gap:16px;margin-bottom:32px;font-weight:700}
